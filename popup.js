@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Varsayılan siteler - eklenti ilk kurulduğunda otomatik eklenir
   const DEFAULT_SITES = [
-    'defaultsiteniz.com',
+    'jestbilisim.com.tr',
   ];
 
   // İlk kurulumda varsayılan siteleri ekle
