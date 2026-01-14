@@ -1,0 +1,165 @@
+/* Just Guard - Stil Dosyası */
+
+/* Korunan reklam bloğu stili */
+.just-guard-protected {
+  position: relative;
+  border: 2px solid #ff5252 !important;
+  border-radius: 8px !important;
+  background: rgba(255, 82, 82, 0.05) !important;
+  padding-top: 35px !important;
+  margin: 10px 0 !important;
+}
+
+/* Uyarı badge'i */
+.just-guard-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ff5252 0%, #d32f2f 100%);
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px 6px 0 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.just-guard-icon {
+  font-size: 16px;
+}
+
+.just-guard-text {
+  flex: 1;
+}
+
+/* Korunan link stili */
+.just-guard-link {
+  position: relative;
+}
+
+.just-guard-link::after {
+  content: '🛡️';
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+/* Modal stilleri */
+.just-guard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2147483647;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.just-guard-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.just-guard-modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+.just-guard-modal.show .just-guard-modal-content {
+  transform: scale(1);
+}
+
+.just-guard-modal-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.just-guard-modal-content h2 {
+  font-size: 24px;
+  color: #ff5252;
+  margin-bottom: 15px;
+}
+
+.just-guard-modal-content p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.just-guard-modal-content strong {
+  color: #4fbdba;
+}
+
+.just-guard-warning {
+  background: rgba(255, 82, 82, 0.2);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  border-radius: 8px;
+  padding: 10px 15px;
+  color: #ff8a80 !important;
+  font-weight: 600;
+  margin: 15px 0 !important;
+}
+
+.just-guard-modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.just-guard-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.just-guard-btn-close {
+  background: #4fbdba;
+  color: #1a1a2e;
+}
+
+.just-guard-btn-close:hover {
+  background: #3da9a6;
+  transform: translateY(-2px);
+}
+
+.just-guard-btn-visit {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.just-guard-btn-visit:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}

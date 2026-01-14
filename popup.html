@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Guard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 360px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .header h1 {
+      font-size: 22px;
+      color: #4fbdba;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .header h1 .shield {
+      font-size: 28px;
+    }
+
+    .header p {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .toggle-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.05);
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .toggle-section span {
+      font-size: 14px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #444;
+      transition: 0.3s;
+      border-radius: 26px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4fbdba;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    .add-site-section {
+      margin-bottom: 20px;
+    }
+
+    .add-site-section label {
+      display: block;
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-group input {
+      flex: 1;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 0 2px rgba(79, 189, 186, 0.3);
+    }
+
+    .input-group input::placeholder {
+      color: #666;
+    }
+
+    .btn-add {
+      padding: 10px 16px;
+      background: #4fbdba;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-add:hover {
+      background: #3da9a6;
+      transform: scale(1.02);
+    }
+
+    .sites-section h3 {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sites-section h3 span {
+      background: rgba(79, 189, 186, 0.2);
+      color: #4fbdba;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+
+    .sites-list {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .sites-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .sites-list::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+      border-radius: 5px;
+    }
+
+    .sites-list::-webkit-scrollbar-thumb {
+      background: #4fbdba;
+      border-radius: 5px;
+    }
+
+    .site-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.05);
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: 0.3s;
+    }
+
+    .site-item:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .site-item .site-url {
+      font-size: 13px;
+      color: #e0e0e0;
+      word-break: break-all;
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .btn-delete {
+      background: rgba(255, 82, 82, 0.2);
+      color: #ff5252;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-delete:hover {
+      background: rgba(255, 82, 82, 0.4);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+    }
+
+    .empty-state .icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-box {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-box .number {
+      font-size: 20px;
+      font-weight: 700;
+      color: #4fbdba;
+    }
+
+    .stat-box .label {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4fbdba;
+      color: #1a1a2e;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      transition: 0.3s;
+      pointer-events: none;
+    }
+
+    .notification.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><span class="shield">🛡️</span> Just Guard</h1>
+    <p>Just English reklamları artık güvende!</p>
+  </div>
+
+  <div class="toggle-section">
+    <span>Koruma Aktif</span>
+    <label class="toggle">
+      <input type="checkbox" id="enableToggle" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="add-site-section">
+    <label>Korumak istediğiniz site domainini ekleyin</label>
+    <div class="input-group">
+      <input type="text" id="siteInput" placeholder="ornek.com veya ornek.com.tr">
+      <button class="btn-add" id="addBtn">Ekle</button>
+    </div>
+  </div>
+
+  <div class="sites-section">
+    <h3>Korunan Siteler <span id="siteCount">0</span></h3>
+    <div class="sites-list" id="sitesList">
+      <div class="empty-state">
+        <div class="icon">📋</div>
+        <p>Henüz site eklenmemiş</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="number" id="blockedCount">0</div>
+      <div class="label">Engellenen Tıklama</div>
+    </div>
+    <div class="stat-box">
+      <div class="number" id="todayCount">0</div>
+      <div class="label">Bugün</div>
+    </div>
+  </div>
+
+  <div class="notification" id="notification">Site eklendi!</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
