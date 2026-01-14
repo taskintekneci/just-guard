@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Varsayılan siteler - eklenti ilk kurulduğunda otomatik eklenir
   const DEFAULT_SITES = [
-    'justenglishtr.com',
-    'wikywatch.com.tr'
+    'defaultsiteniz.com',
   ];
 
   // İlk kurulumda varsayılan siteleri ekle
