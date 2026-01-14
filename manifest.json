@@ -1,12 +1,16 @@
 {
   "manifest_version": 3,
   "name": "Just Guard - Reklam Koruma",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Şirket sitelerinize ait Google reklamlarına yanlışlıkla tıklanmasını önler",
   "permissions": [
     "storage",
-    "activeTab"
+    "scripting",
+    "tabs"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "host_permissions": [
     "https://www.google.com/*",
     "https://www.google.com.tr/*",
